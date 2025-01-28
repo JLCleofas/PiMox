@@ -8,14 +8,14 @@ First of all why in an RPi? Well, this is the only spare "computer" that I have 
 At first, I started out hosting Pi-hole in tandem with WireGuard via PiVPN. Upon reading about self hosting and homelabbing, I stumbled accross a software hypervisor named Proxmox. I learned that even though it is not supported by Proxmox itself, there are maintained ARM64 ports that will enable me to install the service on RPi aka PiMox.
 
 ## Hardware
-Raspberry Pi 4B (I have the 4GB version)
-USB C Power Supply
-2.5 inch Sata to USB enclosure
-SATA SSD (Optional | You can use SD Card)
-External HDD (Optional | This is for my media storage)
-Pi case with fan
-Ethernet Cable
-Other computer to SSH from
+- Raspberry Pi 4B (I have the 4GB version)
+- USB C Power Supply
+- 2.5 inch Sata to USB enclosure
+- SATA SSD (Optional | You can use SD Card)
+- External HDD (Optional | This is for my media storage)
+- Pi case with fan
+- Ethernet Cable
+- Other computer to SSH from
 
 ## Preparation
 In this tutorial, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. I have seen other people use DietPi for a lighter OS. I chose Raspberry Pi OS Lite 64 bit since I will be running this headless and just SSH using my Macbook Air later on.
