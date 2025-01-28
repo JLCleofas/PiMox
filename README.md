@@ -18,7 +18,7 @@ At first, I started out hosting Pi-hole in tandem with WireGuard via PiVPN. Upon
 - Other computer to SSH from
 
 ## Preparation
-In this tutorial, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. I have seen other people use DietPi for a lighter OS. I chose Raspberry Pi OS Lite 64 bit since I will be running this headless and just SSH using my Macbook Air later on.
+In this guide, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. I have seen other people use DietPi for a lighter OS. I chose Raspberry Pi OS Lite 64 bit since I will be running this headless and just SSH using my Macbook Air later on.
 
 I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. After that, I first boot up the system then check if my date and time is synchronized. Run `timedatectl` and if you see that your RPi is not sychronized modify the NTP servers in `sudo nano /etc/systemd/timesyncd.conf`. In my case, since I am in the Philippines, I used:
 ```bash
