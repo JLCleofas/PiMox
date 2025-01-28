@@ -6,3 +6,16 @@ This is made in an attempt to document my process in setting up my own Proxmox s
 First of all why in an RPi? Well, this is the only spare "computer" that I have lying around collecting dust. This board was scrapped out from our Design Project back in my last year in college. Also, I believe that this is a smart move considering that this is my first attempt in building my own server, I will be saving as much as I can to prevent over-commitment.
 
 At first, I started out hosting Pi-hole in tandem with WireGuard via PiVPN. Upon reading about self hosting and homelabbing, I stumbled accross a software hypervisor named Proxmox. I learned that even though it is not supported by Proxmox itself, there are maintained ARM64 ports that will enable me to install the service on RPi aka PiMox.
+
+## Hardware 
+Raspberry Pi 4B
+USB C Power Supply
+2.5 inch Sata to USB enclosure
+SATA SSD (Optional | You can use SD Card)
+External HDD (Optional | This is for my media storage)
+Pi case with fan
+Ethernet Cable
+
+I followed a guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.
+
+<GUIDE WILL START HERE>
