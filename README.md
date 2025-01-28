@@ -1,4 +1,5 @@
 # Project PiMox
+
 Setting up Proxmox VE on Raspberry Pi
 
 This is made in an attempt to document my process in setting up my own Proxmox server using a Raspberry Pi (RPi). I have been planning for so long in self hosting the services that I use. My initial plan was to make a Pi NAS but upon reading the performance of RPi 4B as a NAS, I decided to postpone that plan and push it for later.
@@ -8,19 +9,42 @@ First of all why in an RPi? Well, this is the only spare "computer" that I have 
 At first, I started out hosting Pi-hole in tandem with WireGuard via PiVPN. Upon reading about self hosting and homelabbing, I stumbled accross a software hypervisor named Proxmox. I learned that even though it is not supported by Proxmox itself, there are maintained ARM64 ports that will enable me to install the service on RPi aka PiMox.
 
 ## Hardware
+
 - Raspberry Pi 4B (I have the 4GB version)
 - USB C Power Supply
 - 2.5 inch Sata to USB enclosure
-- SATA SSD (Optional | You can use SD Card)
-- External HDD (Optional | This is for my media storage)
-- Pi case with fan
+- SATA SSD (or you can use SD Card)
+- Pi case with fan (I recommend using a fan to prevent your RPi from thermal throttling)
 - Ethernet Cable
 - Other computer to SSH from
 
-## Preparation
-In this guide, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. I have seen other people use DietPi for a lighter OS. I chose Raspberry Pi OS Lite 64 bit since I will be running this headless and just SSH using my Macbook Air later on.
+### Optional
 
-I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. After that, I first boot up the system then check if my date and time is synchronized. Run `timedatectl` and if you see that your RPi is not sychronized modify the NTP servers in `sudo nano /etc/systemd/timesyncd.conf`. In my case, since I am in the Philippines, I used:
+- Keyboard 
+- Mouse
+- Monitor
+- External HDD (This is for my media storage)
+
+## Preparation
+
+In this guide, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. 
+
+>I have seen other people use DietPi for a lighter OS. 
+
+I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. Download the RPi Imager tool then choose your device, in my case Raspberry Pi 4. Select your OS, I will be using PiOS Lite 64bit. Then lastly select the media storage that you want your RPi to boot up from, mine is the SATA SSD I mentioned earlier. 
+Before proceeding with the installation, I recommend that you also setup your SSH configuration here, you will be using the SSH credentials to access your RPi from your other PC via SSH. You may also disable WLAN connection since it is recommended to do this in a wired connection (I haven't tried setting up Proxmox using WiFi).  
+
+After that, boot up the system and connect to it via SSH from your computer (You can also plugin a keyboard, mouse, and monitor if that's what you prefer). I use Termius on my Mac, you may also use the native terminal if you are in MacOS. 
+
+>I just prefer the feels of Termius. 
+
+If you are using Windows, you may install PuTTY then SSH from there.
+
+You can then check if my date and time is synchronized.
+
+>I don't know if I am the only one encountering this but my Pi always have unsynchronized Time and Date.
+
+Run `timedatectl` and if you see that your RPi is not sychronized modify the NTP servers in `sudo nano /etc/systemd/timesyncd.conf`. In my case, since I am in the Philippines, I used:
 ```bash
 NTP=ph.pool.ntp.org
 NTP=0.asia.pool.ntp.org
@@ -31,7 +55,12 @@ NTP=3.asia.pool.ntp.org
 Then restart the timesyncd.service `sudo systemctl restart systemd-timesyncd.service`. Wait for it to synchronize then perform the basic `sudo apt update && sudo apt upgrade`.
 
 ## Installation of Proxmox ARM64 port
-I followed a this guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.
+
+I followed a this guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.  
+
+Let us first install curl  
+`sudo apt install curl`  
+
 
 ## Post installation
 I recently discovered this [Proxmox Helper-scripts](https://pimox-scripts.com/) dedicated for ARM64 chips. This is REALLY REALLY helpful since the original Proxmox Helper-scrips are not going to work in our PiMox host. I wanted to share this website because I haven't seen any guide mentioning this.
