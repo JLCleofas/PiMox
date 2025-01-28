@@ -45,5 +45,5 @@ bash -c "$(wget -qLO - https://github.com/asylumexp/Proxmox/raw/main/misc/post-p
 After that, you are done! You can finds lots of services you can run in the Pimox Helper-scripts website. 
 
 ### Things I can recommend running though are: 
-**Wireguard** for running your own VPN server
-**Pi-hole with Unbound** for running your own recursive ad-blocking DNS server
+- **Wireguard** for running your own VPN server
+- **Pi-hole with Unbound** for running your own recursive ad-blocking DNS server
