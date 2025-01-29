@@ -33,7 +33,7 @@ In this guide, I used the official Raspberry Pi OS as the base operating system 
 
 I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. Download the RPi Imager tool then choose your device, in my case Raspberry Pi 4. Select your OS, I will be using PiOS Lite 64bit. Then lastly select the media storage that you want your RPi to boot up from, mine is the SATA SSD I mentioned earlier.
 
-(images/pi-imager.png)
+![Raspberry Pi Imager](images/pi-imager.png)
 
 Before proceeding with the installation, I recommend that you also setup your SSH configuration here, you will be using the SSH credentials to access your RPi from your other PC via SSH. You may also disable WLAN connection since it is recommended to do this in a wired connection (I haven't tried setting up Proxmox using WiFi).
 
