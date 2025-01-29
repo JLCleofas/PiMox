@@ -63,24 +63,6 @@ Then restart the timesyncd.service `sudo systemctl restart systemd-timesyncd.ser
 
 I followed a this guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.
 
-Let us first install curl:  
-`sudo apt install curl`
-
-It is recommended to set a static IP address on your RPi. To do this we can edit it via:  
-`sudo nano /etc/hosts`
-
-You will find the host name that you set and an IP beside it:  
-`127.0.0.1` change this to whatever IP that is available in your network.
-
-After you input the IP address, you may now save it by:  
-`CTRL` + `x` then `Y` then `ENTER`
-
-You can check if the changes were made by running:  
-`hostname -i`
-
-You must now set a root password as this wil be the one you are using when accessing the Proxmox WebUI:  
-`sudo passwd root`
-
 ## Post installation
 
 I recently discovered this [Proxmox Helper-scripts](https://pimox-scripts.com/) by Tteck dedicated for ARM64 chips. This is REALLY REALLY helpful since the original Proxmox Helper-scrips are not going to work in our PiMox host. I wanted to share this website because I haven't seen any guide mentioning this.
