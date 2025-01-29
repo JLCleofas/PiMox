@@ -20,31 +20,33 @@ At first, I started out hosting Pi-hole in tandem with WireGuard via PiVPN. Upon
 
 ### Optional
 
-- Keyboard 
+- Keyboard
 - Mouse
 - Monitor
 - External HDD (This is for my media storage)
 
 ## Preparation
 
-In this guide, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi. 
+In this guide, I used the official Raspberry Pi OS as the base operating system (OS) of my Rpi.
 
->I have seen other people use DietPi for a lighter OS. 
+> I have seen other people use DietPi for a lighter OS.
 
-I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. Download the RPi Imager tool then choose your device, in my case Raspberry Pi 4. Select your OS, I will be using PiOS Lite 64bit. Then lastly select the media storage that you want your RPi to boot up from, mine is the SATA SSD I mentioned earlier. 
-Before proceeding with the installation, I recommend that you also setup your SSH configuration here, you will be using the SSH credentials to access your RPi from your other PC via SSH. You may also disable WLAN connection since it is recommended to do this in a wired connection (I haven't tried setting up Proxmox using WiFi).  
+I used the official [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the OS directly on my SATA SSD. Download the RPi Imager tool then choose your device, in my case Raspberry Pi 4. Select your OS, I will be using PiOS Lite 64bit. Then lastly select the media storage that you want your RPi to boot up from, mine is the SATA SSD I mentioned earlier.
+(/images/pi-imager.png)
+Before proceeding with the installation, I recommend that you also setup your SSH configuration here, you will be using the SSH credentials to access your RPi from your other PC via SSH. You may also disable WLAN connection since it is recommended to do this in a wired connection (I haven't tried setting up Proxmox using WiFi).
 
-After that, boot up the system and connect to it via SSH from your computer (You can also plugin a keyboard, mouse, and monitor if that's what you prefer). I use Termius on my Mac, you may also use the native terminal if you are in MacOS. 
+After that, boot up the system and connect to it via SSH from your computer (You can also plugin a keyboard, mouse, and monitor if that's what you prefer). I use Termius on my Mac, you may also use the native terminal if you are in MacOS.
 
->I just prefer the feels of Termius. 
+> I just prefer the feels of Termius.
 
 If you are using Windows, you may install PuTTY then SSH from there.
 
 You can then check if my date and time is synchronized.
 
->I don't know if I am the only one encountering this but my Pi always have unsynchronized Time and Date.
+> I don't know if I am the only one encountering this but my Pi always have unsynchronized Time and Date.
 
 Run `timedatectl` and if you see that your RPi is not sychronized modify the NTP servers in `sudo nano /etc/systemd/timesyncd.conf`. In my case, since I am in the Philippines, I used:
+
 ```bash
 NTP=ph.pool.ntp.org
 NTP=0.asia.pool.ntp.org
@@ -52,41 +54,45 @@ NTP=1.asia.pool.ntp.org
 NTP=2.asia.pool.ntp.org
 NTP=3.asia.pool.ntp.org
 ```
+
 Then restart the timesyncd.service `sudo systemctl restart systemd-timesyncd.service`. Wait for it to synchronize then perform the basic `sudo apt update && sudo apt upgrade`.
 
 ## Installation of Proxmox ARM64 port
 
-I followed a this guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.  
+I followed a this guide by [Emmet](https://pimylifeup.com/raspberry-pi-proxmox/) that gives a detailed installation guide for PiMox.
 
 Let us first install curl:  
-`sudo apt install curl`  
+`sudo apt install curl`
 
 It is recommended to set a static IP address on your RPi. To do this we can edit it via:  
-`sudo nano /etc/hosts`  
+`sudo nano /etc/hosts`
 
 You will find the host name that you set and an IP beside it:  
-`127.0.0.1` change this to whatever IP that is available in your network.  
+`127.0.0.1` change this to whatever IP that is available in your network.
 
 After you input the IP address, you may now save it by:  
-`CTRL` + `x` then `Y` then `ENTER`  
+`CTRL` + `x` then `Y` then `ENTER`
 
 You can check if the changes were made by running:  
-`hostname -i`  
+`hostname -i`
 
 You must now set a root password as this wil be the one you are using when accessing the Proxmox WebUI:  
 `sudo passwd root`
- 
+
 ## Post installation
+
 I recently discovered this [Proxmox Helper-scripts](https://pimox-scripts.com/) dedicated for ARM64 chips. This is REALLY REALLY helpful since the original Proxmox Helper-scrips are not going to work in our PiMox host. I wanted to share this website because I haven't seen any guide mentioning this.
 
 I first run the Proxmox Post-install script to prepare my node. This will disable unnecessary things such as the subscription nag and add proper repositories when updating your host.
+
 ```bash
 # Proxmox VE Post Install
 bash -c "$(wget -qLO - https://github.com/asylumexp/Proxmox/raw/main/misc/post-pve-install.sh)"
 ```
 
-After that, you are done! You can finds lots of services you can run in the Pimox Helper-scripts website. 
+After that, you are done! You can finds lots of services you can run in the Pimox Helper-scripts website.
 
-### Things I can recommend running though are: 
+### Things I can recommend running though are:
+
 - **Wireguard** for running your own VPN server
 - **Pi-hole with Unbound** for running your own recursive ad-blocking DNS server
