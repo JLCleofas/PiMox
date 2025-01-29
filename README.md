@@ -83,7 +83,9 @@ You must now set a root password as this wil be the one you are using when acces
 
 ## Post installation
 
-I recently discovered this [Proxmox Helper-scripts](https://pimox-scripts.com/) dedicated for ARM64 chips. This is REALLY REALLY helpful since the original Proxmox Helper-scrips are not going to work in our PiMox host. I wanted to share this website because I haven't seen any guide mentioning this.
+I recently discovered this [Proxmox Helper-scripts](https://pimox-scripts.com/) by Tteck dedicated for ARM64 chips. This is REALLY REALLY helpful since the original Proxmox Helper-scrips are not going to work in our PiMox host. I wanted to share this website because I haven't seen any guide mentioning this.
+
+![Proxmox Helper-Scripts by Tteck](images/pimox-helper-scripts.png)
 
 I first run the Proxmox Post-install script to prepare my node. This will disable unnecessary things such as the subscription nag and add proper repositories when updating your host.
 
